@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="login2.css" rel="styleSheet">
+    <title>Login2</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="login" id="login">
+            <div class="login22">
+                <center> <label for="login22">Log In</label><br><br>
+            </div>
+
+            <div class="inpuuts">
+                <center>
+                    <label>User Name</label><br>
+                    <input type="text" id="usrname" name="usrname" placeholder="Enter your Name " required><br><br>
+
+                    <label>Password</label><br>
+                    <input type="Password" id="Pasword" name="Password" placeholder="Enter your Password"
+                        required><br><br>
+
+                    <input name="radio" class="radio" value="user" type="radio">user
+                    <input name="radio" class="radio" value="seller" type="radio">seller <br>
+                    <button input type="button" id="submit" name="submit" onclick="check();">login</button>
+
+            </div>
+            </center>
+        </div>
+
+    </div>
+    <div id="profile">
+        <h1>profile</h1>
+    </div>
+    <script>
+        var userArray = [{ username: "Menna", Password: "menna1234" }];
+        var usersArray = [{ username: "Arwa", Password: "Arwa123" }];
+        function check() {
+            var username = document.getElementById("usrname").value;
+            var Password = document.getElementById("Pasword").value;
+            console.log(username);
+            console.log(Password)
+            var all_radio = document.querySelectorAll(".radio");
+            for (var i = 0; i < all_radio.length; i++) {
+                if (all_radio[i].checked && all_radio[i].value == "user") {
+                    for (var k = 0; k < userArray.length; k++) {
+                        if (userArray[k].Password == Password && userArray[k].username == username) {
+                            alert("the user log in succsefuly" + username);
+                            profile();
+                        }
+                        else {
+                            alert("data not correct")
+                        }
+                    }
+                }
+                else if (all_radio[i].checked && all_radio[i].value == "seller") {
+                    for (var i = 0; i < usersArray.length; i++) {
+                        if (usersArray[i].Password == Password && usersArray[i].username == username) {
+                            alert("the seller log in succsefuly" + username);
+                            profile();
+                        }
+                        else {
+                            alert("data not correct")
+                        }
+                    }
+                }
+            }
+        }
+        function profile() {
+            var username = document.getElementById("usrname").value;
+            var Password = document.getElementById("Pasword").value
+            var all_radio = document.querySelectorAll(".radio");
+            for (var i = 0; i < all_radio.length; i++) {
+                if (all_radio[i].checked && all_radio[i].value == "user") {
+                    document.getElementById("profile").innerHTML =
+                        `
+            <p>User profile</p>
+            <p>${username}</p>
+            <p>${Password}</p>
+            `
+                }
+                else if (all_radio[i].checked && all_radio[i].value == "seller") {
+                    document.getElementById("profile").innerHTML =
+                        `
+            <p>seller profile</p>
+            <p>${username}</p>
+            <p>${Password}</p>
+            `
+                }
+            }
+
+        }
+    </script>
+</body>
+
+</html>
